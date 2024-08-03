@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Challenge Game</title>
+</head>
+  <body><style> button{cursor: pointer;}</style>
+  <h1 style="text-align: center";><p id="problem"></p><center>
+  <input type="number" id="answerInput">
+  <button onclick="checkAnswer()">Submit</button>
+  <p>Questions left: <span id="questionsLeft">25</span></p>
+  <p>Score: <span id="score">0</span></p>
+  <p id="message"></p>
+  <button id="playAgainBtn" onclick="playAgain()" style="display: none;">Play Again</button></h1>
+
+  <script>
+    const totalQuestions = 25;
+    const passingPercentage = 70;
+    let problemType, problemText;
+    let score = 0;
+    let questionsLeft = totalQuestions;
+    let playAgainBtn = document.getElementById('playAgainBtn');
+
+    function startGame() {
+      showNewProblem();
+    }
+
+    function showNewProblem() {
+      if (questionsLeft === 0) {
+        endGame();
+        return;
+      }
+
+      const problemTypes = ['largest', 'smallest', 'addition', 'subtraction', 'multiplication', 'squareRoot'];
+      problemType = problemTypes[Math.floor(Math.random() * problemTypes.length)];
+      document.getElementById('answerInput').value = '';
+
+      switch (problemType) {
+        case 'largest':
+          generateLargestProblem();
+          break;
+        case 'smallest':
+          generateSmallestProblem();
+          break;
+        case 'addition':
+          generateAdditionProblem();
+          break;
+        case 'subtraction':
+          generateSubtractionProblem();
+          break;
+        case 'multiplication':
+          generateMultiplicationProblem();
+          break;
+        case 'squareRoot':
+          generateSquareRootProblem();
+          break;
+      }
+
+      questionsLeft--;
+      document.getElementById('questionsLeft').textContent = questionsLeft;
+    }
+
+    function generateLargestProblem() {
+      const num1 = Math.floor(Math.random() * 100) + 1;
+      const num2 = Math.floor(Math.random() * 100) + 1;
+      problemText = `Which number is largest between ${num1} and ${num2}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function generateSmallestProblem() {
+      const num1 = Math.floor(Math.random() * 100) + 1;
+      const num2 = Math.floor(Math.random() * 100) + 1;
+      problemText = `Which number is smallest between ${num1} and ${num2}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function generateAdditionProblem() {
+      const num1 = Math.floor(Math.random() * 100) + 1;
+      const num2 = Math.floor(Math.random() * 100) + 1;
+      problemText = `What is the result of ${num1} + ${num2}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function generateSubtractionProblem() {
+      const num1 = Math.floor(Math.random() * 100) + 1;
+      const num2 = Math.floor(Math.random() * 100) + 1;
+      problemText = `What is the result of ${num1} - ${num2}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function generateMultiplicationProblem() {
+      const num1 = Math.floor(Math.random() * 20) + 1;
+      const num2 = Math.floor(Math.random() * 20) + 1;
+      problemText = `What is the result of ${num1} × ${num2}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function generateSquareRootProblem() {
+      const num = Math.floor(Math.random() * 100) + 1;
+      problemText = `What is the square root of ${num}?`;
+      document.getElementById('problem').textContent = problemText;
+    }
+
+    function checkAnswer() {
+      const userAnswer = parseInt(document.getElementById('answerInput').value);
+
+      switch (problemType) {
+        case 'largest':
+          checkLargestAnswer(userAnswer);
+          break;
+        case 'smallest':
+          checkSmallestAnswer(userAnswer);
+          break;
+        case 'addition':
+          checkAdditionAnswer(userAnswer);
+          break;
+        case 'subtraction':
+          checkSubtractionAnswer(userAnswer);
+          break;
+        case 'multiplication':
+          checkMultiplicationAnswer(userAnswer);
+          break;
+        case 'squareRoot':
+          checkSquareRootAnswer(userAnswer);
+          break;
+      }
+    }
+
+    function checkLargestAnswer(userAnswer) {
+      const numbers = problemText.match(/\d+/g).map(Number);
+      const largest = Math.max(...numbers);
+
+      if (userAnswer === largest) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function checkSmallestAnswer(userAnswer) {
+      const numbers = problemText.match(/\d+/g).map(Number);
+      const smallest = Math.min(...numbers);
+
+      if (userAnswer === smallest) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function checkAdditionAnswer(userAnswer) {
+      const numbers = problemText.match(/\d+/g).map(Number);
+      const result = numbers[0] + numbers[1];
+
+      if (userAnswer === result) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function checkSubtractionAnswer(userAnswer) {
+      const numbers = problemText.match(/\d+/g).map(Number);
+      const result = numbers[0] - numbers[1];
+
+      if (userAnswer === result) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function checkMultiplicationAnswer(userAnswer) {
+      const numbers = problemText.match(/\d+/g).map(Number);
+      const result = numbers[0] * numbers[1];
+
+      if (userAnswer === result) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function checkSquareRootAnswer(userAnswer) {
+      const number = parseInt(problemText.match(/\d+/)[0]);
+      const result = Math.sqrt(number);
+
+      if (userAnswer === result) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
+
+      showNewProblem();
+    }
+
+    function endGame() {
+      const percentage = (score / totalQuestions) * 100;
+      let passOrFail = "Fail";
+      if (percentage >= passingPercentage) {
+        passOrFail = "Pass";
+      }
+
+      document.getElementById('message').textContent = `Game Over! Your final score is ${score} out of ${totalQuestions} (${percentage.toFixed(2)}%). You ${passOrFail} the game.`;
+      document.getElementById('answerInput').disabled = true;
+      playAgainBtn.style.display = 'block';
+    }
+
+    function playAgain() {
+      score = 0;
+      questionsLeft = totalQuestions;
+      document.getElementById('score').textContent = score;
+      document.getElementById('questionsLeft').textContent = questionsLeft;
+      document.getElementById('message').textContent = '';
+      document.getElementById('answerInput').disabled = false;
+      playAgainBtn.style.display = 'none';
+      startGame();
+    }
+
+    // Start the game when the page loads
+    startGame();
+  </script>
+</body>
+</html>

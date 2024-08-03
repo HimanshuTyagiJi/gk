@@ -1,0 +1,174 @@
+<!DOCTYPE html> <html lang="en" > <head><meta charset="UTF-8"><title>Power Conversion - IsharaPlus</title><link rel="stylesheet" href="./style.css"> <meta name="viewport" content="width=device-width, initial-scale=1"></head> <body> 
+  
+        <sidebar>  <button class="menu-toggle" onclick="toggleMenu()">➤</button>
+    <ul class="menu-list" id="menuList">
+           
+ 
+        <li><a class="active" href="c_intro.c">Introduction to C</a></li>
+        <li><a href="c_basics.c">C Basics</a></li>
+        <li><a href="c_datatypes.c">Data Types</a></li>
+        <li><a href="c_variables.c">Variables</a></li>
+        <li><a href="c_operators.c">Operators</a></li>
+        <li><a href="c_control_structures.c">Control Structures</a></li>
+        <li><a href="c_functions.c">Functions</a></li>
+        <li><a href="c_arrays.c">Arrays</a></li>
+        <li><a href="c_pointers.c">Pointers</a></li>
+        <li><a href="c_strings.c">Strings</a></li>
+        <li><a href="c_structures.c">Structures</a></li>
+        <li><a href="c_unions.c">Unions</a></li>
+        <li><a href="c_file_io.c">File I/O</a></li>
+        <li><a href="c_memory_allocation.c">Memory Allocation</a></li>
+        <li><a href="c_preprocessors.c">Preprocessors</a></li>
+        <li><a href="c_libraries.c">Standard Libraries</a></li>
+        <li><a href="c_multithreading.c">Multithreading</a></li>
+        <li><a href="c_networking.c">Networking</a></li>
+        <li><a href="c_best_practices.c">Best Practices</a></li>
+        <li><a href="c_advanced.c">Advanced Topics</a></li>
+
+
+          <br>
+        </ul>
+    </div>
+    
+     
+ <div class="container"><center><div class="scrollmenu-container">
+    <div class="arrow" onclick="scrollMenu('left')"><b>❮</b></div>
+    <div class="scrollmenu" id="scrollmenu">
+    <a class="active" href="c_language.c">C</a>
+    <a href="csharp_language.cs">C#</a>
+    <a href="cpp_language.cpp">C++</a>
+    <a href="html_language.html">HTML</a>
+    <a href="css_language.css">CSS</a>
+    <a href="javascript_language.js">JavaScript</a>
+    <a href="python_language.py">Python</a>
+    <a href="java_language.jsp">Java</a>
+    <a href="php_language.php">PHP</a>
+    <a href="sql_language.sql">SQL</a>
+    <a href="nodejs_language.js">NodeJS</a>
+    <a href="react_library.js">React</a>
+    <a href="angular_framework.js">Angular</a>
+    <a href="jquery_library.js">jQuery</a>
+    <a href="bootstrap_framework.html">Bootstrap</a>
+    <a href="w3css_framework.html">W3.CSS</a>
+    <a href="xml_format.xml">XML</a>
+    <a href="mysql_database.sql">MySQL</a>
+    <a href="git_versioncontrol.html">Git</a>
+    <a href="datascience_field.html">Data Science</a>
+    <a href="ai_field.html">AI</a>
+    <a href="graphics_design.html">Graphics</a>
+    <a href="icons_design.html">Icons</a>
+    <a href="codegame_activity.html">Code Game</a>
+    <a href="tutorials.html">Tutorials</a>
+    <a href="programming_concepts.html">Programming</a>
+    <a href="webdevelopment.html">Web Development</a>
+    <a href="training.html">Training</a>
+    <a href="learning.html">Learning</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="exercises.html">Exercises</a>
+    <a href="courses.html">Courses</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="references.html">References</a>
+    <a href="examples.html">Examples</a>
+    <a href="learntocode.html">Learn to code</a>
+    <a href="sourcecode.html">Source code</a>
+    <a href="demos.html">Demos</a>
+    <a href="tips.html">Tips</a>
+    <a href="website.html">Website</a></div> <div class="arrow" onclick="scrollMenu('right')">❯</div>
+
+</center>
+
+ 
+    </b>
+    <div class="color-content2" >
+ <h1>Computer</h1></div>
+
+    <p>A computer is an electronic device designed to process and store data. It is a versatile tool used in various fields of human knowledge and science, and has become an essential instrument for most tasks in today's world.</p>
+
+    <p>A computer operates using programs, which are sets of instructions written in human-readable language. These instructions can take various forms, such as numbers, text, images, etc.</p>
+
+    <p>The development of computers occurred when there was a need to perform calculations and carry out various tasks more efficiently. Early computers were very large and were used for specialized purposes in fields like science and mathematics.</p>
+
+    <p>However, nowadays, computers are used in all fields, including education, business, computer gaming, entertainment, and more. They come in various forms like personal computers, laptops, tablets, gaming computers, servers, etc.</p>
+    <br>
+   
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple HTML Editor</title>
+        <style>
+    
+        </style>
+    </head>
+    <body><div class="as">
+        <div class="editor-container">
+            <div class="header"> 
+                <h1> Simple HTML Editor</h1>
+                <div>
+                    <button onclick="runCode()">Live Run Code</button>
+                    <button class="full-view-button" onclick="openFullView()">Full View</button>
+                </div>
+            </div>
+            <div class="range-slider">
+                <label for="widthRange">Adjust Columns Width:</label>
+                <input type="range" id="widthRange" min="20" max="80" value="50" oninput="adjustWidth(this.value)">
+            </div>
+            <div class="columns">
+                <textarea id="cCode" oninput="runCode()">
+                    #include <stdio.h>
+                    
+                    int main() {
+                        printf("Hello, World!\n");
+                        return 0;
+                    }
+                                </textarea>
+                                <pre id="output"></pre>
+                            </div>
+                        </div>
+                    
+                        <script>
+                            function runCode() {
+                                var cCode = document.getElementById("cCode").value;
+                                // Simulating C code execution
+                                var output = simulateCCodeExecution(cCode);
+                                document.getElementById("output").textContent = output;
+                            }
+                    
+                            function adjustWidth(value) {
+                                var textarea = document.getElementById("cCode");
+                                var output = document.getElementById("output");
+                                textarea.style.width = value + "%";
+                                output.style.width = (100 - value) + "%";
+                            }
+                    
+                            function openFullView() {
+                                var cCode = document.getElementById("cCode").value;
+                                var newWindow = window.open();
+                                newWindow.document.open();
+                                newWindow.document.write("<pre>" + cCode + "</pre>");
+                                newWindow.document.close();
+                            }
+                    
+                            function simulateCCodeExecution(code) {
+                                // This function simulates the execution of C code.
+                                // In a real-world scenario, you would send the code to a server for compilation and execution.
+                                if (code.includes("printf")) {
+                                    return "Hello, World!\n";
+                                } else {
+                                    return "No output generated.\n";
+                                }
+                            }
+                    
+                            // Initial run
+                            runCode();
+        </script>
+    </body>
+    </html>
+</div><br>
+
+ <div class="important_link"><br><br><p style="font-size:24px;" >Important Links</p><br><div id="links-container"><ul id="links-list"></ul></div></div>
+    <hr><footer><div class="custom-row"> <div class="custom-column"> <b>Follow Us</b><div id="image-links"></div></div><div class="custom-column"><button onclick="goToUrl()">Contact</button></div><div class="custom-column"><p id="my-paragraph"></p></div></div>
+    <script src="./script.js"></script>
+    <script src="./searchsuggestion.js"></script>

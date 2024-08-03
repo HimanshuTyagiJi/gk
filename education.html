@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html lang="en" > <head><meta charset="UTF-8"><title>Power Conversion - IsharaPlus</title><link rel="stylesheet" href="./style.css"> <meta name="viewport" content="width=device-width, initial-scale=1"></head> <body> <sidebar><button class="menu-toggle" onclick="toggleMenu()">➤</button>
+  <style>body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .content {
+    text-align: center;
+    margin-right: 50px;
+  }
+  
+  .construction {
+    width: 100px;
+    height: 100px;
+    background-color: #ff6f61;
+    border-radius: 50%;
+    position: relative;
+    animation: blink 1s infinite alternate;
+  }
+  
+  .construction:before, .construction:after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  
+  .construction:before {
+    top: 10px;
+    left: 10px;
+  }
+  
+  .construction:after {
+    top: 10px;
+    right: 10px;
+  }
+  
+  @keyframes blink {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+  }
+  </style>
+<div class="container"><div class="container">
+    <div class="content">
+      <h1>Coming Soon</h1>
+      <p>Our website is currently under construction. Stay tuned for updates!</p>
+    </div>
+    <div class="construction"></div>
+
+   <script src="./script.js"></script></body></html>

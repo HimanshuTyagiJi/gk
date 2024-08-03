@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This is an MCQ test webpage where multiple choice questions are provided to assess your knowledge on various topics.">
+    <meta name="keywords" content="MCQ, test, multiple choice questions, online quiz, assessment, knowledge test">
+    <meta name="author" content="">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="MCQ Test Page">
+    <meta property="og:description" content="Participate in our MCQ test and evaluate your knowledge with a variety of multiple choice questions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <link rel="stylesheet" href="./style.css">
+     <title>MCQ Test Page</title>
+</head>
+<body> <div class="container">
+    <h3>Hindi Test Part - 01 </h3><form id="quiz-form" style="display: none;"><div id="questions-container"></div><div id="timer">Time: 0:00</div><button type="submit" class="submit-btn" style="display: none;">Submit</button></form><div id="result"></div><button id="retry-btn" style="display: none;" onclick="retryQuiz()">Try Again</button><div id="startModal" class="modal"><div class="modal-content">
+    <center><h3>Some Rules of this Test</h3></center>
+        <p>1. The test consists of 50 questions.</p>
+        <p>2. The test will track the total time taken for all questions.</p>
+        <p>3. Once you move to the next question or skip a question, you cannot go back to previous questions.</p>
+        <p>4. You cannot skip the test while playing.</p>
+        <p>5. You will get points based on your correct answers.</p>
+    <center><button class="start-btn" onclick="startQuiz()">Start</button></center></div></div><div id="resultModal" class="modal"><div class="modal-content">
+            <h3>Quiz Results</h3>
+            <div id="resultContent"></div>
+            <button class="review-btn" onclick="reviewQuestions()">Review Questions</button>
+            <button class="retry-btn" onclick="retryQuiz()">Try Again</button></div></div>
+
+    <div id="review-questions"></div>
+
+    <script>
+       var totalSeconds = 0;
+var timerInterval;
+var userAnswers = [];
+var questions = [
+{
+        "question": "What does CPU stand for?",
+        "options": [
+            { "text": "A. Central Processing Unit", "value": "a" },
+            { "text": "B. Computer Personal Unit", "value": "b" },
+            { "text": "C. Central Personal Unit", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "CPU stands for Central Processing Unit, which is responsible for executing instructions and performing calculations in a computer system."
+    },
+    {
+        "question": "What is the full form of RAM?",
+        "options": [
+            { "text": "A. Random Access Memory", "value": "a" },
+            { "text": "B. Read-Only Memory", "value": "b" },
+            { "text": "C. Rapid Access Memory", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "RAM stands for Random Access Memory, which is used by computers to store data temporarily while the computer is on."
+    },
+    {
+        "question": "What is the function of an operating system?",
+        "options": [
+            { "text": "A. To manage computer hardware and software resources", "value": "a" },
+            { "text": "B. To protect the computer from viruses", "value": "b" },
+            { "text": "C. To create documents and presentations", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "The operating system manages computer hardware and software resources, provides a user interface, and facilitates communication between hardware and software components."
+    },
+    {
+        "question": "Which programming language is often used for web development?",
+        "options": [
+            { "text": "A. Java", "value": "a" },
+            { "text": "B. Python", "value": "b" },
+            { "text": "C. JavaScript", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "JavaScript is often used for web development to create interactive and dynamic content on websites."
+    },
+    {
+        "question": "What is HTML used for?",
+        "options": [
+            { "text": "A. Creating dynamic web pages", "value": "a" },
+            { "text": "B. Styling web pages", "value": "b" },
+            { "text": "C. Structuring web documents", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "HTML (Hypertext Markup Language) is used for structuring web documents by defining the structure and content of web pages."
+    },
+    {
+        "question": "What does URL stand for?",
+        "options": [
+            { "text": "A. Uniform Resource Locator", "value": "a" },
+            { "text": "B. Universal Reference Link", "value": "b" },
+            { "text": "C. Unified Resource Link", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "URL stands for Uniform Resource Locator, which is a reference to a web resource that specifies its location on the internet."
+    },
+    {
+        "question": "Which of the following is NOT a programming language?",
+        "options": [
+            { "text": "A. Java", "value": "a" },
+            { "text": "B. Photoshop", "value": "b" },
+            { "text": "C. C++", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Photoshop is not a programming language; it is an image editing software developed by Adobe."
+    },
+    {
+        "question": "What does SQL stand for?",
+        "options": [
+            { "text": "A. Structured Query Language", "value": "a" },
+            { "text": "B. Simple Query Language", "value": "b" },
+            { "text": "C. Standard Query Language", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "SQL stands for Structured Query Language, which is used for managing and manipulating relational databases."
+    },
+    {
+        "question": "What is the purpose of a firewall?",
+        "options": [
+            { "text": "A. To block unauthorized access to a computer or network", "value": "a" },
+            { "text": "B. To increase internet speed", "value": "b" },
+            { "text": "C. To enhance computer performance", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A firewall is a security device or software that monitors and controls incoming and outgoing network traffic based on predetermined security rules."
+    },
+    {
+        "question": "What is the role of a compiler?",
+        "options": [
+            { "text": "A. To convert source code into machine code", "value": "a" },
+            { "text": "B. To execute instructions in a computer program", "value": "b" },
+            { "text": "C. To manage memory allocation in a computer system", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A compiler translates source code written in a high-level programming language into machine code (binary code) that can be understood and executed by a computer."
+    },
+    {
+        "question": "What is the purpose of a database management system (DBMS)?",
+        "options": [
+            { "text": "A. To create graphical user interfaces", "value": "a" },
+            { "text": "B. To manage and manipulate data in databases", "value": "b" },
+            { "text": "C. To perform mathematical calculations", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A database management system (DBMS) is software that enables users to manage and manipulate data in databases, including storing, retrieving, updating, and deleting data."
+    },
+    {
+        "question": "What does GUI stand for?",
+        "options": [
+            { "text": "A. General User Interface", "value": "a" },
+            { "text": "B. Graphical User Interface", "value": "b" },
+            { "text": "C. Global User Integration", "value": "c" }
+        ], "correctOption": "b",
+        "explanation": "GUI stands for Graphical User Interface, which allows users to interact with electronic devices using graphical icons and visual indicators rather than text-based commands."
+    },
+    {
+        "question": "What is the function of a router?",
+        "options": [
+            { "text": "A. To connect multiple computers in a network", "value": "a" },
+            { "text": "B. To transmit data packets between computer networks", "value": "b" },
+            { "text": "C. To provide power to computer devices", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A router is a networking device that forwards data packets between computer networks. It acts as an intermediary between devices on a local network and the internet, ensuring that data is transmitted efficiently and securely."
+    },
+    {
+        "question": "Which of the following is NOT a type of computer network?",
+        "options": [
+            { "text": "A. LAN", "value": "a" },
+            { "text": "B. WAN", "value": "b" },
+            { "text": "C. USB", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "USB (Universal Serial Bus) is a standard for connecting peripherals to computers, not a type of computer network. LAN (Local Area Network) and WAN (Wide Area Network) are types of computer networks."
+    },
+    {
+        "question": "What is cloud computing?",
+        "options": [
+            { "text": "A. A type of internet connection", "value": "a" },
+            { "text": "B. A method of storing and accessing data and programs over the internet", "value": "b" },
+            { "text": "C. A programming language", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Cloud computing is a method of storing and accessing data and programs over the internet instead of on a local hard drive. It allows users to access resources such as storage and processing power on-demand, without the need for physical infrastructure."
+    },
+    {
+        "question": "What is encryption?",
+        "options": [
+            { "text": "A. The process of converting data into a format that cannot be easily understood by unauthorized users", "value": "a" },
+            { "text": "B. The process of compressing data to save storage space", "value": "b" },
+            { "text": "C. The process of converting data into audio or visual form", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "Encryption is the process of converting data into a format that cannot be easily understood by unauthorized users. It is used to protect sensitive information such as passwords, financial transactions, and personal data from unauthorized access."
+    },
+    {
+        "question": "What is a virus in the context of computers?",
+        "options": [
+            { "text": "A. A type of computer hardware", "value": "a" },
+            { "text": "B. A malicious program that can replicate itself and spread to other computers", "value": "b" },
+            { "text": "C. A type of computer peripheral", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A virus is a malicious program that can replicate itself and spread to other computers. It can cause damage to computer systems by corrupting files, stealing personal information, or disrupting normal operation."
+    },
+    {
+        "question": "What is a firewall?",
+        "options": [
+            { "text": "A. A physical barrier that prevents access to a computer network", "value": "a" },
+            { "text": "B. A security device or software that monitors and controls incoming and outgoing network traffic", "value": "b" },
+            { "text": "C. A device used to connect multiple computers in a network", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A firewall is a security device or software that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It helps protect computers and networks from unauthorized access and cyber threats."
+    },
+    {
+        "question": "What is a URL?",
+        "options": [
+            { "text": "A. A type of computer virus", "value": "a" },
+            { "text": "B. A reference to a web resource that specifies its location on the internet", "value": "b" },
+            { "text": "C. A programming language", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A URL (Uniform Resource Locator) is a reference to a web resource that specifies its location on the internet. It consists of a protocol, domain name, and optional path and parameters, which help identify the location of a web page, file, or resource."
+    },
+    {
+        "question": "What is HTML used for?",
+        "options": [
+            { "text": "A. Creating dynamic web pages", "value": "a" },
+            { "text": "B. Styling web pages", "value": "b" },
+            { "text": "C. Structuring web documents", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "HTML (Hypertext Markup Language) is used for structuring web documents by defining the structure and content of web pages. It provides a standard way to create and organize text, images, links, and other elements on a web page."
+    },
+    {
+        "question": "What is CSS used for?",
+        "options": [
+            { "text": "A. Creating interactive web pages", "value": "a" },
+            { "text": "B. Styling web pages", "value": "b" },
+            { "text": "C. Managing databases", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "CSS (Cascading Style Sheets) is used for styling web pages by defining the presentation and layout of HTML documents. It allows developers to control the appearance of text, images, backgrounds, borders, and other elements on a web page."
+    },
+    {
+        "question": "What does SEO stand for?",
+        "options": [
+            { "text": "A. Search Engine Optimization", "value": "a" },
+            { "text": "B. Social Engineering Online", "value": "b" },
+            { "text": "C. Software Engineering Operations", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "SEO stands for Search Engine Optimization, which is the process of improving the visibility and ranking of a website in search engine results. It involves optimizing website content, structure, and performance to attract organic traffic from search engines."
+    },
+    {
+        "question": "What is responsive web design?",
+        "options": [
+            { "text": "A. A method of designing websites that automatically adjust their layout and content to suit different screen sizes and devices", "value": "a" },
+            { "text": "B. A type of web hosting service", "value": "b" },
+            { "text": "C. A programming language for web development", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "Responsive web design is a method of designing websites that automatically adjust their layout and content to suit different screen sizes and devices. It ensures optimal viewing and interaction experience across a wide range of devices, including desktops, laptops, tablets, and smartphones."
+    },
+    {
+        "question": "What is the purpose of a content management system (CMS)?",
+        "options": [
+            { "text": "A. To manage hardware resources in a computer system", "value": "a" },
+            { "text": "B. To create and manage digital content on websites", "value": "b" },
+            { "text": "C. To encrypt data for security purposes", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A content management system (CMS) is software that allows users to create, manage, and publish digital content on websites without requiring technical expertise. It provides tools for content creation, editing, organization, and publication, enabling users to manage website content efficiently."
+    },
+    {
+        "question": "What is the purpose of version control software?",
+        "options": [
+            { "text": "A. To control access to computer resources", "value": "a" },
+            { "text": "B. To manage different versions of files and documents", "value": "b" },
+            { "text": "C. To optimize computer performance", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Version control software is used to manage different versions of files and documents by tracking changes, organizing revisions, and facilitating collaboration among multiple users. It allows users to revert to previous versions, compare changes, and merge modifications from different contributors."
+    },
+    {
+        "question": "What is the purpose of data compression?",
+        "options": [
+            { "text": "A. To increase the size of data files", "value": "a" },
+            { "text": "B. To reduce the size of data files", "value": "b" },
+            { "text": "C. To encrypt data for security purposes", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Data compression is the process of reducing the size of data files by encoding information using fewer bits or removing redundant information. It helps save storage space, decrease transmission time, and improve data transfer efficiency."
+    },
+    {
+        "question": "What is the purpose of a network protocol?",
+        "options": [
+            { "text": "A. To manage computer hardware resources", "value": "a" },
+            { "text": "B. To establish rules and conventions for communication between devices in a network", "value": "b" },
+            { "text": "C. To create graphical user interfaces", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A network protocol is a set of rules and conventions that govern communication between devices in a network. It defines how data is formatted, transmitted, received, and processed, ensuring reliable and efficient communication among networked devices."
+    },
+    {
+        "question": "What is a DNS server?",
+        "options": [
+            { "text": "A. A server used to host websites and web applications", "value": "a" },
+            { "text": "B. A server used to convert domain names into IP addresses", "value": "b" },
+            { "text": "C. A server used to store and manage database records", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A DNS (Domain Name System) server is a server that translates domain names (e.g., www.example.com) into IP addresses (e.g., 192.0.2.1) and vice versa. It enables users to access websites and other internet resources using human-readable domain names instead of numerical IP addresses."
+    },
+    {
+        "question": "What is a cookie?",
+        "options": [
+            { "text": "A. A small text file stored on a user's computer by a website", "value": "a" },
+            { "text": "B. A type of computer virus", "value": "b" },
+            { "text": "C. A hardware device used for data storage", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A cookie is a small text file stored on a user's computer by a website to track and store information about the user's browsing activity and preferences. It enables websites to personalize user experiences, remember login credentials, and analyze user behavior."
+    },
+    {
+        "question": "What is a web server?",
+        "options": [
+            { "text": "A. A server used to host websites and web applications", "value": "a" },
+            { "text": "B. A server used to manage email communications", "value": "b" },
+            { "text": "C. A server used to store and manage database records", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A web server is a server that hosts websites and web applications, delivering web content to users over the internet. It processes incoming requests from web browsers, retrieves requested files or data, and sends them back to the requesting client."
+    },
+    {
+        "question": "What is a client-server architecture?",
+        "options": [
+            { "text": "A. A network architecture where each device communicates directly with every other device", "value": "a" },
+            { "text": "B. A network architecture where devices are organized in a hierarchical structure", "value": "b" },
+            { "text": "C. A network architecture where clients request services or resources from servers", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "A client-server architecture is a network architecture where clients request services or resources from servers. Clients initiate communication by sending requests to servers, which process the requests and provide responses, such as web pages, files, or data."
+    }, {
+        "question": "What is cloud computing?",
+        "options": [
+            { "text": "A. A type of internet connection", "value": "a" },
+            { "text": "B. A method of storing and accessing data and programs over the internet", "value": "b" },
+            { "text": "C. A programming language", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Cloud computing is a method of storing and accessing data and programs over the internet instead of on a local hard drive. It allows users to access resources such as storage and processing power on-demand, without the need for physical infrastructure."
+    },
+    {
+        "question": "What is encryption?",
+        "options": [
+            { "text": "A. The process of converting data into a format that cannot be easily understood by unauthorized users", "value": "a" },
+            { "text": "B. The process of compressing data to save storage space", "value": "b" },
+            { "text": "C. The process of converting data into audio or visual form", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "Encryption is the process of converting data into a format that cannot be easily understood by unauthorized users. It is used to protect sensitive information such as passwords, financial transactions, and personal data from unauthorized access."
+    },
+    {
+        "question": "What is a virus in the context of computers?",
+        "options": [
+            { "text": "A. A type of computer hardware", "value": "a" },
+            { "text": "B. A malicious program that can replicate itself and spread to other computers", "value": "b" },
+            { "text": "C. A type of computer peripheral", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A virus is a malicious program that can replicate itself and spread to other computers. It can cause damage to computer systems by corrupting files, stealing personal information, or disrupting normal operation."
+    },
+    {
+        "question": "What is a firewall?",
+        "options": [
+            { "text": "A. A physical barrier that prevents access to a computer network", "value": "a" },
+            { "text": "B. A security device or software that monitors and controls incoming and outgoing network traffic", "value": "b" },
+            { "text": "C. A device used to connect multiple computers in a network", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A firewall is a security device or software that monitors and controls incoming and outgoing network traffic based on predetermined security rules. It helps protect computers and networks from unauthorized access and cyber threats."
+    },
+    {
+        "question": "What is a URL?",
+        "options": [
+            { "text": "A. A type of computer virus", "value": "a" },
+            { "text": "B. A reference to a web resource that specifies its location on the internet", "value": "b" },
+            { "text": "C. A programming language", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A URL (Uniform Resource Locator) is a reference to a web resource that specifies its location on the internet. It consists of a protocol, domain name, and optional path and parameters, which help identify the location of a web page, file, or resource."
+    },
+    {
+        "question": "What is HTML used for?",
+        "options": [
+            { "text": "A. Creating dynamic web pages", "value": "a" },
+            { "text": "B. Styling web pages", "value": "b" },
+            { "text": "C. Structuring web documents", "value": "c" }
+        ], "correctOption": "c",
+
+     "explanation": "HTML (Hypertext Markup Language) is used for structuring web documents by defining the structure and content of web pages. It provides a standard way to create and organize text, images, links, and other elements on a web page."
+    },
+    {
+        "question": "What is CSS used for?",
+        "options": [
+            { "text": "A. Creating interactive web pages", "value": "a" },
+            { "text": "B. Styling web pages", "value": "b" },
+            { "text": "C. Managing databases", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "CSS (Cascading Style Sheets) is used for styling web pages by defining the presentation and layout of HTML documents. It allows developers to control the appearance of text, images, backgrounds, borders, and other elements on a web page."
+    },
+    {
+        "question": "What does SEO stand for?",
+        "options": [
+            { "text": "A. Search Engine Optimization", "value": "a" },
+            { "text": "B. Social Engineering Online", "value": "b" },
+            { "text": "C. Software Engineering Operations", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "SEO stands for Search Engine Optimization, which is the process of improving the visibility and ranking of a website in search engine results. It involves optimizing website content, structure, and performance to attract organic traffic from search engines."
+    },
+    {
+        "question": "What is responsive web design?",
+        "options": [
+            { "text": "A. A method of designing websites that automatically adjust their layout and content to suit different screen sizes and devices", "value": "a" },
+            { "text": "B. A type of web hosting service", "value": "b" },
+            { "text": "C. A programming language for web development", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "Responsive web design is a method of designing websites that automatically adjust their layout and content to suit different screen sizes and devices. It ensures optimal viewing and interaction experience across a wide range of devices, including desktops, laptops, tablets, and smartphones."
+    },
+    {
+        "question": "What is the purpose of a content management system (CMS)?",
+        "options": [
+            { "text": "A. To manage hardware resources in a computer system", "value": "a" },
+            { "text": "B. To create and manage digital content on websites", "value": "b" },
+            { "text": "C. To encrypt data for security purposes", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A content management system (CMS) is software that allows users to create, manage, and publish digital content on websites without requiring technical expertise. It provides tools for content creation, editing, organization, and publication, enabling users to manage website content efficiently."
+    },
+    {
+        "question": "What is the purpose of version control software?",
+        "options":[
+            { "text": "A. To control access to computer resources", "value": "a" },
+            { "text": "B. To manage different versions of files and documents", "value": "b" },
+            { "text": "C. To optimize computer performance", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Version control software is used to manage different versions of files and documents by tracking changes, organizing revisions, and facilitating collaboration among multiple users. It allows users to revert to previous versions, compare changes, and merge modifications from different contributors."
+    },
+    {
+        "question": "What is the purpose of data compression?",
+        "options": [
+            { "text": "A. To increase the size of data files", "value": "a" },
+            { "text": "B. To reduce the size of data files", "value": "b" },
+            { "text": "C. To encrypt data for security purposes", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Data compression is the process of reducing the size of data files by encoding information using fewer bits or removing redundant information. It helps save storage space, decrease transmission time, and improve data transfer efficiency."
+    },
+    {
+        "question": "What is the purpose of a network protocol?",
+        "options": [
+            { "text": "A. To manage computer hardware resources", "value": "a" },
+            { "text": "B. To establish rules and conventions for communication between devices in a network", "value": "b" },
+            { "text": "C. To create graphical user interfaces", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A network protocol is a set of rules and conventions that govern communication between devices in a network. It defines how data is formatted, transmitted, received, and processed, ensuring reliable and efficient communication among networked devices."
+    },
+    {
+        "question": "What is a DNS server?",
+        "options": [
+            { "text": "A. A server used to host websites and web applications", "value": "a" },
+            { "text": "B. A server used to convert domain names into IP addresses", "value": "b" },
+            { "text": "C. A server used to store and manage database records", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A DNS (Domain Name System) server is a server that translates domain names (e.g., www.example.com) into IP addresses (e.g., 192.0.2.1) and vice versa. It enables users to access websites and other internet resources using human-readable domain names instead of numerical IP addresses."
+    },
+    {
+        "question": "What is a cookie?",
+        "options": [
+            { "text": "A. A small text file stored on a user's computer by a website", "value": "a" },
+            { "text": "B. A type of computer virus", "value": "b" },
+            { "text": "C. A hardware device used for data storage", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A cookie is a small text file stored on a user's computer by a website to track and store information about the user's browsing activity and preferences. It enables websites to personalize user experiences, remember login credentials, and analyze user behavior."
+    },
+    {
+        "question": "What is a web server?",
+        "options": [
+            { "text": "A. A server used to host websites and web applications", "value": "a" },
+            { "text": "B. A server used to manage email communications", "value": "b" },
+            { "text": "C. A server used to store and manage database records", "value": "c" }
+        ],
+        "correctOption": "a",
+        "explanation": "A web server is a server that hosts websites and web applications, delivering web content to users over the internet. It processes incoming requests from web browsers, retrieves requested files or data, and sends them back to the requesting client."
+    },
+    {
+        "question": "What is a client-server architecture?",
+        "options": [
+            { "text": "A. A network architecture where each device communicates directly with every other device", "value": "a" },
+            { "text": "B. A network architecture where devices are organized in a hierarchical structure", "value": "b" },
+            { "text": "C. A network architecture where clients request services or resources from servers", "value": "c" }
+        ],
+        "correctOption": "c",
+        "explanation": "A client-server architecture is a network architecture where clients request services or resources from servers. Clients initiate communication by sending requests to servers, which process the requests and provide responses, such as web pages, files, or data."
+    }
+, {
+        "question": "What is a database?",
+        "options": [
+            { "text": "A. A collection of computer hardware components", "value": "a" },
+            { "text": "B. A structured collection of data organized for efficient storage and retrieval", "value": "b" },
+            { "text": "C. A software application for creating documents and spreadsheets", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "A database is a structured collection of data organized for efficient storage and retrieval. It consists of tables, each containing rows and columns, to represent and store data in a systematic way. Databases are commonly used in applications such as websites, business systems, and software applications to manage and manipulate large volumes of data."
+    },
+    {
+        "question": "What is machine learning?",
+        "options": [
+            { "text": "A. A type of computer hardware", "value": "a" },
+            { "text": "B. A branch of artificial intelligence that enables computers to learn from data and improve performance over time without being explicitly programmed", "value": "b" },
+            { "text": "C. A programming language for web development", "value": "c" }
+        ],
+        "correctOption": "b",
+        "explanation": "Machine learning is a branch of artificial intelligence that enables computers to learn from data and improve performance over time without being explicitly programmed. It involves algorithms that analyze and interpret data, identify patterns and trends, and make predictions or decisions based on the analysis. Machine learning is used in various applications, including image recognition, natural language processing, and recommendation systems."
+    }
+]
+ 
+;
+
+var startModal = document.getElementById("startModal");
+var resultModal = document.getElementById("resultModal");
+
+window.onload = function () {
+    startModal.style.display = "block";
+}
+
+function startQuiz() {
+    startModal.style.display = "none";
+    document.getElementById('quiz-form').style.display = 'block';
+    shuffleQuestions();
+    generateQuestions();
+    startTimer();
+}
+
+function shuffleQuestions() {
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+}
+
+function startTimer() {
+    totalSeconds = 0;
+    timerInterval = setInterval(function () {
+        totalSeconds++;
+        var minutes = Math.floor(totalSeconds / 60);
+        var seconds = totalSeconds % 60;
+        document.getElementById('timer').textContent = 'Time: ' + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function generateQuestions() {
+    var questionsContainer = document.getElementById('questions-container');
+    questionsContainer.innerHTML = '';
+
+    questions.forEach(function (question, index) {
+        var questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+        if (index !== 0) {
+            questionDiv.style.display = 'none';
+        }
+
+        var questionText = document.createElement('p');
+        questionText.innerHTML = (index + 1) + ". " + question.question; // Modified line
+        questionDiv.appendChild(questionText);
+
+        // Rest of your code remains the same...
+
+
+        var optionsDiv = document.createElement('div');
+        optionsDiv.classList.add('options');
+        question.options.forEach(function (option) {
+            var optionLabel = document.createElement('label');
+            var optionInput = document.createElement('input');
+            optionInput.type = 'radio';
+            optionInput.name = 'question-' + index;
+            optionInput.value = option.value;
+            optionInput.addEventListener('change', function () {
+                var labels = optionsDiv.getElementsByTagName('label');
+                for (var i = 0; i < labels.length; i++) {
+                    labels[i].classList.remove('selected');
+                }
+                optionLabel.classList.add('selected');
+                userAnswers[index] = option.value;
+                var nextButton = document.getElementById('next-btn-' + index);
+                if (nextButton) {
+                    nextButton.disabled = false;
+                    nextButton.style.opacity = 1;
+                }
+                var submitButton = document.getElementById('submit-btn-' + index);
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.style.opacity = 1;
+                }
+            });
+            optionLabel.textContent = option.text;
+            optionLabel.insertBefore(optionInput, optionLabel.firstChild);
+            optionsDiv.appendChild(optionLabel);
+        });
+        questionDiv.appendChild(optionsDiv);
+
+        var button;
+        if (index < questions.length - 1) {
+            button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('next-btn');
+            button.textContent = 'Next';
+            button.id = 'next-btn-' + index;
+            button.disabled = true;
+            button.style.opacity = 0.5;
+            button.addEventListener('click', function () {
+                showNextQuestion(index);
+            });
+        } else {
+            button = document.createElement('button');
+            button.type = 'button';
+            button.classList.add('submit-btn');
+            button.textContent = 'Submit';
+            button.id = 'submit-btn-' + index;
+            button.disabled = true;
+            button.style.opacity = 0.5;
+            button.addEventListener('click', submitQuiz);
+        }
+        questionDiv.appendChild(button);
+
+        var skipButton = document.createElement('button');
+        skipButton.type = 'button';
+        skipButton.classList.add('skip-btn');
+        skipButton.textContent = 'Skip';
+        skipButton.addEventListener('click', function () {
+            userAnswers[index] = 'skipped';
+            if (index === questions.length - 1) {
+                submitQuiz();
+            } else {
+                showNextQuestion(index);
+            }
+        });
+        questionDiv.appendChild(skipButton);
+
+        questionsContainer.appendChild(questionDiv);
+    });
+}
+
+function showNextQuestion(currentIndex) {
+    var currentQuestion = document.querySelectorAll('.question')[currentIndex];
+    var nextQuestion = document.querySelectorAll('.question')[currentIndex + 1];
+
+    currentQuestion.style.display = 'none';
+    nextQuestion.style.display = 'block';
+}
+
+function submitQuiz() {
+    stopTimer();
+    var score = 0;
+    var totalQuestions = questions.length;
+    var skipped = 0;
+    var correct = 0;
+    var incorrect = 0;
+
+    userAnswers.forEach(function (answer, index) {
+        if (answer === 'skipped') {
+            skipped++;
+        } else if (answer === questions[index].correctOption) {
+            correct++;
+            score++;
+        } else {
+            incorrect++;
+        }
+    });
+
+    var percentage = (correct / totalQuestions) * 100;
+
+    var resultContent = 
+        '<p>Skipped: ' + skipped + '</p>' +
+        '<p>Correct: ' + correct + '</p>' +
+        '<p>Incorrect: ' + incorrect + '</p>' +
+        '<p>Percentage: ' + percentage.toFixed(2) + '%</p>' +
+        '<p>Score: ' + score + '/' + totalQuestions + '</p>' +
+        '<p>Total Time taken: ' + Math.floor(totalSeconds / 60) + ' minutes ' + (totalSeconds % 60) + ' seconds</p>';
+
+    var resultContentDiv = document.getElementById('resultContent');
+    resultContentDiv.innerHTML = resultContent;
+    resultModal.style.display = 'block';
+}
+
+function reviewQuestions() {
+    stopTimer();
+    resultModal.style.display = 'none';
+    document.getElementById('quiz-form').style.display = 'none';
+    var reviewDiv = document.getElementById('review-questions');
+    reviewDiv.innerHTML = '<h2>Review Questions</h2>';
+    questions.forEach(function (question, index) {
+        var userAnswer = userAnswers[index];
+        var correctAnswer = question.correctOption;
+        var explanation = question.explanation;
+        var questionText = (index + 1) + ". " + question.question; // Modified line
+        var resultText = '<p><strong>' + questionText + '</strong></p>';
+
+        var options = question.options;
+        options.forEach(function (option) {
+            var optionLabel = option.text;
+            var optionValue = option.value;
+            var optionClass = 'default-color';
+            var userAnswerText = '';
+
+            if (optionValue === userAnswer && userAnswer === correctAnswer) {
+                optionClass = 'correct-answer';
+                userAnswerText = ' (Your Answer)';
+            } else if (optionValue === userAnswer && userAnswer !== correctAnswer) {
+                optionClass = 'incorrect-answer';
+                userAnswerText = ' (Your Answer)';
+            } else if (optionValue === correctAnswer) {
+                optionClass = 'correct-answer';
+            }
+            resultText += '<p class="' + optionClass + '">' + optionLabel + userAnswerText + '</p>';
+        });
+
+        resultText += '<p><span class="blue-text">Explanation:</span> ' + explanation + '</p>';
+        resultText += '<br><br><hr><br><br>';
+        reviewDiv.innerHTML += resultText;
+    });
+    reviewDiv.innerHTML += '<button class="retry-btn" onclick="retryQuiz()">Try Again</button>';
+    reviewDiv.style.display = 'block';
+}
+
+       
+
+function retryQuiz() {
+    totalSeconds = 0;
+    clearInterval(timerInterval);
+    document.getElementById('timer').textContent = 'Time: 0:00';
+    document.getElementById('quiz-form').reset();
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('review-questions').style.display = 'none';
+    var questionDivs = document.querySelectorAll('.question');
+    questionDivs.forEach(function (div, index) {
+        if (index === 0) {
+            div.style.display = 'block';
+        } else {
+            div.style.display = 'none';
+        }
+    });
+    userAnswers = [];
+    resultModal.style.display = 'none';
+    startQuiz();
+}
+
+    </script>
+</body>
+</html>
