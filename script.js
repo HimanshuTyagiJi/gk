@@ -90,8 +90,8 @@ function closeMenuOnClickOutside(event) {
   }
 }
 
-var youtubeChannelID = "YourYouTubeChannelID";
-var instagramProfileURL = "YourInstagramProfileURL";
+var youtubeChannelID = "https://youtube.com/@gklearnstudy";
+var instagramProfileURL = "https://www.instagram.com/gklearnstudy";
 
 document.addEventListener("DOMContentLoaded", function() {
     var youtubeMetaTag = document.querySelector('meta[property="youtube:channel"]');
@@ -126,7 +126,7 @@ inputElements.forEach(function(inputElement) {
 var currentPageTitle = document.title;
 
 // Title generate karne ka example
-var generatedTitle = currentPageTitle + " - Edu Tech MasterMind";
+var generatedTitle = currentPageTitle + " - GK Learn Study";
 
 // Generated title ko current web page ke title tag mein set karna
 document.title = generatedTitle;
@@ -150,13 +150,13 @@ function createHeader() {
 
   // Create brand link
   const brandLink = document.createElement("a");
-  brandLink.setAttribute("href", "./index.html");
+  brandLink.setAttribute("href", "./");
   brandLink.setAttribute("class", "brand");
   
    const brandH3 = document.createElement("h3");
 
 // Set the text content of the brand name
-const brandName = "EduTechMasterMind";
+const brandName = "GK Learn Study";
 brandH3.textContent = brandName;
 const body = document.querySelector("body");
 body.insertBefore(brandH3, body.firstChild);
@@ -235,7 +235,7 @@ brandH3.appendChild(brandImg);
 
   // Array of menu items with their respective href values
   const menuItems = [
-    { text: "Home", href: "index.html" },
+    { text: "Home", href: "./" },
     { text: "Conversion", href: "conversion.html" },
     { text: "Education", href: "education.html" },
     { text: "All Formula", href: "all-formulas.html" },
