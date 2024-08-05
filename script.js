@@ -1,3 +1,19 @@
+(function() {
+    var cx = 'b0ecd4ea7b8d44888'; // Replace with your own CX
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+})();
+
+document.addEventListener("DOMContentLoaded", function() {
+    var searchElement = document.createElement('div');
+    searchElement.className = 'gcse-search';
+    document.body.appendChild(searchElement);
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Add loading overlay and progress bar
     const loadingOverlay = document.createElement('div');
