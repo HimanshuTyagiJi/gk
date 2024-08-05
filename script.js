@@ -1,18 +1,20 @@
 (function() {
-    var cx = 'b0ecd4ea7b8d44888'; // Replace with your own CX
+    var cx = 'b0ecd4ea7b8d44888';
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
+    
+    gcse.onload = function() {
+        // Remove the hash fragment from the URL
+        if (window.location.hash === '#gsc.tab=0') {
+            history.replaceState(null, null, ' ');
+        }
+    };
 })();
 
-document.addEventListener("DOMContentLoaded", function() {
-    var searchElement = document.createElement('div');
-    searchElement.className = 'gcse-search';
-    document.body.appendChild(searchElement);
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     // Add loading overlay and progress bar
