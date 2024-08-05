@@ -1,4 +1,12 @@
-
+function performSearch() {
+    const query = document.getElementById('search-input').value;
+    const resultsContainer = document.getElementById('search-results');
+    
+    // For demonstration, we'll just show the query entered by the user
+    resultsContainer.innerHTML = `You searched for: ${query}`;
+    
+    // Here, you can add your search logic to display actual search results
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   var menuList = document.getElementById('menuList');
