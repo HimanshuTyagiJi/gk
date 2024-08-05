@@ -6,14 +6,16 @@
     gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
-    
+
     gcse.onload = function() {
-        // Remove the hash fragment from the URL
-        if (window.location.hash === '#gsc.tab=0') {
-            history.replaceState(null, null, ' ');
+        // Remove the hash fragment and .html extension from the URL
+        var newUrl = window.location.href.replace(/\.html$/, '').replace(/#gsc\.tab=0$/, '');
+        if (newUrl !== window.location.href) {
+            history.replaceState(null, null, newUrl);
         }
     };
 })();
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
