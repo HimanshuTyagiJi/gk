@@ -1,12 +1,46 @@
-function performSearch() {
-    const query = document.getElementById('search-input').value;
-    const resultsContainer = document.getElementById('search-results');
-    
-    // For demonstration, we'll just show the query entered by the user
-    resultsContainer.innerHTML = `You searched for: ${query}`;
-    
-    // Here, you can add your search logic to display actual search results
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const head = document.querySelector('head');
+
+    // Favicon
+    const faviconLink = document.createElement('link');
+    faviconLink.rel = 'icon';
+    faviconLink.type = 'GK-Learn_Study.jpeg';
+    faviconLink.href = 'GK-Learn_Study.jpeg';
+    head.appendChild(faviconLink);
+
+    // Manifest
+    const manifestLink = document.createElement('link');
+    manifestLink.rel = 'manifest';
+    manifestLink.href = '/manifest.json';
+    head.appendChild(manifestLink);
+
+    // Metadata
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = 'Your website description';
+    head.appendChild(metaDescription);
+
+    const metaOgTitle = document.createElement('meta');
+    metaOgTitle.setAttribute('property', 'og:title');
+    metaOgTitle.content = 'GK Learn Study';
+    head.appendChild(metaOgTitle);
+
+    const metaOgDescription = document.createElement('meta');
+    metaOgDescription.setAttribute('property', 'og:description');
+    metaOgDescription.content = 'Your website description';
+    head.appendChild(metaOgDescription);
+
+    const metaOgImage = document.createElement('meta');
+    metaOgImage.setAttribute('property', 'og:image');
+    metaOgImage.content = 'https://yourwebsite.com/path/to/image.png';
+    head.appendChild(metaOgImage);
+
+    const metaOgUrl = document.createElement('meta');
+    metaOgUrl.setAttribute('property', 'og:url');
+    metaOgUrl.content = 'https://yourwebsite.com';
+    head.appendChild(metaOgUrl);
+});
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var menuList = document.getElementById('menuList');
