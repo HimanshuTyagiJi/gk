@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const head = document.querySelector('head');
 
@@ -7,7 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     faviconLink.type = 'GK-Learn_Study.jpeg';
     faviconLink.href = 'GK-Learn_Study.jpeg';
     head.appendChild(faviconLink);
-
+ const manifestContent = {
+        "name": "GK Learn Study",
+        
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#ffffff",
+        "icons": [
+            {
+                "src": "GK-Learn_Study.jpeg",
+                "sizes": "192x192",
+                 "border-radius":"50%",
+                "type": "image/jpeg"
+            },
+            {
+                "src": "GK-Learn_Study.jpeg",
+                "sizes": "512x512",
+                "border-radius":"50%",
+                "type": "image/jpeg"
+            }
+        ]
+    };
     // Manifest
     const manifestLink = document.createElement('link');
     manifestLink.rel = 'manifest';
@@ -42,6 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var menuList = document.getElementById('menuList');
   var listItem = document.getElementById('myListItem');
@@ -49,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
 });
+
 
 document.addEventListener('DOMContentLoaded', function () {
   const questionsContainer = document.getElementById('questions-container');
