@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         "start_url": "/",
         "display": "standalone",
-        "background_color": "#ffffff",
-        "theme_color": "#ffffff",
+        "background_color": "red",
+        "theme_color": "blue",
         "icons": [
             {
                 "src": "GK-Learn_Study.jpeg",
