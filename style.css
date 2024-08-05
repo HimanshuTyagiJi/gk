@@ -387,7 +387,7 @@ a:visited:hover, a:link:hover {color:rgb(34, 1, 246);}
 .frac > span {display: block;}
 .frac span.bottom {border-top: thin solid rgb(0, 0, 0);}
 .frac span.symbol {display: none;}
-#search {background-image: url('image/search-icon.png');
+#search {background-image: url('search-icon.png');
 background-size: 20px; /* Set the width of the image */
 width: 100%;padding: 12px 20px 12px 40px;border: 1px solid #ddd;margin-bottom: 12px;} 
 #myTable {border-collapse: collapse;width: 100%;border: 1px solid #ddd;} 
