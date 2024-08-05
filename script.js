@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Favicon
     const faviconLink = document.createElement('link');
     faviconLink.rel = 'icon';
-    faviconLink.type = 'GK-Learn_Study.jpeg';
-    faviconLink.href = 'GK-Learn_Study.jpeg';
+    faviconLink.type = 'GK-Learn_Study.png';
+    faviconLink.href = 'GK-Learn_Study.png';
     head.appendChild(faviconLink);
  const manifestContent = {
         "name": "GK Learn Study",
@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
         "theme_color": "blue",
         "icons": [
             {
-                "src": "GK-Learn_Study.jpeg",
+                "src": "GK-Learn_Study.png",
                 "sizes": "192x192",
                  "border-radius":"50%",
                 "type": "image/jpeg"
             },
             {
-                "src": "GK-Learn_Study.jpeg",
+                "src": "GK-Learn_Study.png",
                 "sizes": "512x512",
                 "border-radius":"50%",
                 "type": "image/jpeg"
