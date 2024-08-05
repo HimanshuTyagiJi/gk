@@ -1,3 +1,4 @@
+// cse.js
 (function() {
     var cx = 'b0ecd4ea7b8d44888';
     var gcse = document.createElement('script');
@@ -9,12 +10,17 @@
 
     gcse.onload = function() {
         // Remove the hash fragment and .html extension from the URL
-        var newUrl = window.location.href.replace(/\.html$/, '').replace(/#gsc\.tab=0$/, '');
-        if (newUrl !== window.location.href) {
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl
+            .replace(/\.html(\?|#|$)/, '$1') // Remove .html
+            .replace(/#gsc\.tab=0$/, ''); // Remove #gsc.tab=0
+
+        if (newUrl !== currentUrl) {
             history.replaceState(null, null, newUrl);
         }
     };
 })();
+
 
 
 
