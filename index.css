@@ -144,7 +144,11 @@ top: 8%;
 
 @media screen and (max-width: 900px) {
 .dropdown-content {float:left; left:-500%;}	
-
+.link-pair a {
+  
+  margin: 0 15px;
+ 
+}
 button { width:80%;
   margin-bottom: 40px;
   margin:none;
