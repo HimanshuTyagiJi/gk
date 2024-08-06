@@ -179,7 +179,46 @@
     
     
     <a href="world-gk.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text">
-        <img src="world-gk.png"style=" width:100px"></span>gk</div> </div> <br>
+        <img src="world-gk.png"style=" width:100px"> <svg class="icon" viewBox="0 0 200 100">
+        <text x="10" y="60" class="text">GK</text>
+    </svg></span></div> </div> <style>
+        .icon {
+            width: 200px;
+            height: 100px;
+        }
+
+        .text {
+            font-family: Arial, sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            fill: #3498db;
+            animation: color-change 2s infinite, move-text 2s infinite;
+        }
+
+        @keyframes color-change {
+            0% {
+                fill: #3498db;
+            }
+            50% {
+                fill: #e74c3c;
+            }
+            100% {
+                fill: #3498db;
+            }
+        }
+
+        @keyframes move-text {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style> <br>
         <span class="logo-text"><h3 style="color:black";>World GK</h3></span> </a></div>
       
       <h1 style="text-align:left">Education</h1> <div class="scrollmenu"><a href="physics.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><svg viewBox="-400 -400 800 800"><circle class="orbit" cx="0" cy="0" r="100"/><circle class="orbit" cx="0" cy="0" r="200"/><circle class="orbit" cx="0" cy="0" r="300"/><!-- Add more orbits for other planets --><g transform="rotate(45)"> <circle class="sun" cx="0" cy="0" r="50"/><g transform="rotate(90)"> <circle class="earth" cx="100" cy="0" r="40"><animateTransform attributeName="transform"attributeType="XML"type="rotate"from="0 0 0"to="360 0 0"dur="10s"repeatCount="indefinite"/> </circle> </g><g transform="rotate(180)"> <circle class="jupiter" cx="200" cy="0" r="45"><animateTransform attributeName="transform"attributeType="XML"type="rotate"from="0 0 0"to="360 0 0"dur="20s"repeatCount="indefinite"/> </circle> </g><g transform="rotate(270)"> <circle class="mars" cx="300" cy="0" r="42"><animateTransform attributeName="transform"attributeType="XML"type="rotate"from="0 0 0"to="360 0 0"dur="15s"repeatCount="indefinite"/> </circle> </g></g></svg> </body> </html> </span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Physics</h3></span> </a> <a href="chemistry.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="chemistry.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Chemistry</h3></span> </a> <a href="mathematics.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="mathematics.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Maths</h3></span> </a> <a href="biology.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="biology.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Biology</h3></span> </a>
