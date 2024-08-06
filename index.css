@@ -142,8 +142,8 @@ margin: 0 auto;
 top: 8%;
 }
 
-@media screen and (max-width: 600px) {
-	
+@media screen and (max-width: 900px) {
+.dropdown-content {float:left; left:-460%;}	
 
 button { width:80%;
   margin-bottom: 40px;
