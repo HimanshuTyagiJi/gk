@@ -1,3 +1,4 @@
+
 var watermark = document.createElement('div');
 watermark.classList.add('watermark');
 watermark.textContent = 'EduTech MasterMind'; // Replace with your desired watermark text
@@ -21,7 +22,7 @@ function activateLink(link) {
   });
   link.classList.add('active');
 }
-// Your JavaScript code goes here
+
 const suggestions = [
   { title: 'Conversion', link: 'conversion.html' },
   { title: 'Table of angle conversion', link: 'conversion.html#Angle' },
@@ -62,14 +63,20 @@ function showSuggestions(inputValue) {
     suggestion.title.toLowerCase().includes(inputValue.toLowerCase())
   );
 
-  filteredSuggestions.forEach(suggestion => {
-    const listItem = document.createElement('li');
-    listItem.textContent = suggestion.title;
-    listItem.addEventListener('click', () => {
-      window.location.href = suggestion.link;
+  if (filteredSuggestions.length === 0) {
+    const noResultItem = document.createElement('li');
+    noResultItem.textContent = 'No results found';
+    suggestionList.appendChild(noResultItem);
+  } else {
+    filteredSuggestions.forEach(suggestion => {
+      const listItem = document.createElement('li');
+      listItem.textContent = suggestion.title;
+      listItem.addEventListener('click', () => {
+        window.location.href = suggestion.link;
+      });
+      suggestionList.appendChild(listItem);
     });
-    suggestionList.appendChild(listItem);
-  });
+  }
 
   suggestionList.style.display = 'block';
 }
