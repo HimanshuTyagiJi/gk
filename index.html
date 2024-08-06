@@ -272,23 +272,7 @@
             
             <span class="logo-text"><h3 style="color:black";>Vyakaran</h3></span> </a><a href="computer.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="Computer.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Computer</h3></span> </a> <a href="banking.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="banking.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Banking</h3></span> </a> <a href="technology.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="technology.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Technology</h3></span> </a><a href="test.html" class="logo-link"> <div class="circle-container"><div class="circle"><span class="circle-text"><img src="test.png"style=" width:100px"></span></div> </div> <br><span class="logo-text"><h3 style="color:black";>Test</h3></span> </a> </div><h1 style="text-align:left">Social Media</h1><div class="scrollmenu"><a href="history.html" class="logo-link"><img src="instagram.png"style=" width:100px"> <br><span class="logo-text">Instagram</span> </a><a href="history.html" class="logo-link"><a href="geography.html" class="logo-link"> <img src="linkedln.png"style=" width:100px"> <br><span class="logo-text">Instagram</span> </a><a href="history.html" class="logo-link"><a href="geography.html" class="logo-link"> <img src="koo.png"style=" width:100px"> <br><span class="logo-text">Instagram</span> </a><a href="youtube.html" class="logo-link"><a href="geography.html" class="logo-link"> <img src="youtube.png"style=" width:100px"> <br><span class="logo-text">Instagram</span> </a><a href="history.html" class="logo-link"><a href="geography.html" class="logo-link"> <img src="youtube.png"style=" width:100px"> <br><span class="logo-text">Instagram</span> </a></div>
  <script>
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
 
  (function() {
     var cx = 'b0ecd4ea7b8d44888';
@@ -311,6 +295,23 @@ window.onclick = function(event) {
         }
     };
 })();
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
 
  </script> 
       <script src="./searchsuggestion.js"></script> </body> </html>
