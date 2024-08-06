@@ -27,13 +27,13 @@
     background: #4caf50;
     transition: width 0.5s;
 }
-#suggestion-list {position: absolute;top: 9%;left: 23.5%;list-style: none;background-color: #fff;border: 3px solid #ccc;border-top: none;
+#suggestion-list {position: absolute;top: 95.5%;left: 23.5%;list-style: none;background-color: #fff;border: 3px solid #ccc;border-top: none;
   padding: 10px;margin: 5px;display: none;width:50%;height:max-height: 300px; /* Maximum height for overflow handling */
   overflow: auto;}
 #suggestion-list li {line-height:2.5em;font-size: 20px; padding: 5px;cursor: pointer;color:black;text-align: left;}
 #suggestion-list li:hover { background-color: brown;color:white; border-radius:10px;}
 
-@media screen and (max-width: 900px){#suggestion-list {position: absolute;top: 9%;left: 0;list-style: none;background-color: #fff;border: 3px solid #ccc;border-top: none;
+@media screen and (max-width: 900px){#suggestion-list {position: absolute;top: 95.5%;left: 0;list-style: none;background-color: #fff;border: 3px solid #ccc;border-top: none;
   padding: 10px;margin: 5px;display: none;width:97%;max-height: 300px; /* Maximum height for overflow handling */
   overflow: auto;}
 
