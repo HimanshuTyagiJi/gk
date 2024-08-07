@@ -1,5 +1,4 @@
-
-        .loading-overlay {
+ .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -27,6 +26,7 @@
             background: #4caf50;
             transition: width 0.5s;
         }
+    
     
 #suggestion-list {position: absolute;top: 95.5%;left: 23.5%;list-style: none;background-color: #fff;border: 3px solid #ccc;border-top: none;
   padding: 10px;margin: 5px;display: none;width:50%;max-height: 300px; /* Maximum height for overflow handling */
