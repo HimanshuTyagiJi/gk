@@ -305,12 +305,15 @@ window.onclick = function(event) {
 
 
      
-     document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
     // Replace the web icon
     var favicon = document.querySelector('link[rel="icon"]');
-    if (favicon) {
-        favicon.href = "GK-Learn-Study.png";
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
     }
+    favicon.href = "GK-Learn-Study.png";
 
     // Change the website title
     document.title = "GK Learn Study";
@@ -327,7 +330,6 @@ window.onclick = function(event) {
         iconContainer.innerHTML = '<img src="GK-Learn-Study.png" alt="GK Learn Study" style="height:18px;line-height:18px;width:18px">';
     }
 });
-
 
 
 
