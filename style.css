@@ -740,7 +740,7 @@ iframe {width:95%;height:600px;margin:10px;
 hr{height: 5%;}
 @media only screen and (min-width: 900px) {
  
-  .menu{position:relative;top:10;left:0;width:auto;height:auto;margin-left:auto;box-shadow:none;}
+  .menu{position:relative;top:0;left:0;width:auto;height:auto;margin-left:auto;box-shadow:none;}
   .menu-inner{display:flex;flex-direction:row;}
   .menu-link{text-transform:capitalize;}
   .menu-block{margin-left:2rem;}
@@ -750,7 +750,7 @@ hr{height: 5%;}
   .menu-list {top:10%;width:16.5%;display: block;overflow-y: auto;margin:-5px;}}
 
 @media only screen and (max-width: 900px) {body{font-size:15px;}
-  .header{padding:2px}
+  .header{padding:1px:height:45px;}
   .accordion-item .title-content {flex: 1;}
   .accordion-item img {width: 350px;height: 220px;}
   .title-content {display: inline;text-align: center;align-items: center;}
