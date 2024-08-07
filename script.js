@@ -1,16 +1,12 @@
-// cse.js
-(function()  {
-        // Remove the hash fragment and .html extension from the URL
-        var currentUrl = window.location.href;
-        var newUrl = currentUrl
-            .replace(/\.html(\?|#|$)/, '$1') // Remove .html
-            
-        if (newUrl !== currentUrl) {
-            history.replaceState(null, null, newUrl);
-        }
-    };
-})();
+(function() {
+    // Remove the hash fragment and .html extension from the URL
+    var currentUrl = window.location.href;
+    var newUrl = currentUrl.replace(/\.html(\?|#|$)/, '$1'); // Remove .html
 
+    if (newUrl !== currentUrl) {
+        history.replaceState(null, null, newUrl);
+    }
+})();
 
 
 
