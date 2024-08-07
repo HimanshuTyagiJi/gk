@@ -351,17 +351,25 @@ window.onclick = function(event) {
                 progress.style.width = value + '%';
             }
 
-            // Simulate loading process
-            let progressValue = 0;
-            const loadingInterval = setInterval(() => {
-                progressValue += 10;
-                updateProgressBar(progressValue);
-                if (progressValue >= 100) {
-                    clearInterval(loadingInterval);
-                    document.body.removeChild(loadingOverlay);
-                }
-            }, 500);
+            // Simulate network request and update progress
+            const simulateNetworkRequest = () => {
+                return new Promise((resolve) => {
+                    let progressValue = 0;
+                    const interval = setInterval(() => {
+                        progressValue += 10;
+                        updateProgressBar(progressValue);
+                        if (progressValue >= 100) {
+                            clearInterval(interval);
+                            resolve();
+                        }
+                    }, 500); // Adjust interval based on your needs
+                });
+            };
+
+            // Perform network request and handle loading
+            simulateNetworkRequest().then(() => {
+                document.body.removeChild(loadingOverlay);
+            });
         });
-  
     </script>
       <script src="./searchsuggestion.js"></script> </body> </html>
