@@ -283,20 +283,10 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
 
-    gcse.onload = function() {
-        // Remove the hash fragment and .html extension from the URL
-        var currentUrl = window.location.href;
-        var newUrl = currentUrl
-            .replace(/\.html(\?|#|$)/, '$1') // Remove .html
-            .replace(/#gsc\.tab=0$/, ''); // Remove #gsc.tab=0
-
-        if (newUrl !== currentUrl) {
-            history.replaceState(null, null, newUrl);
-        }
-    };
+   
 })();
 
- </script> <script>function myFunction() {
+function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
@@ -312,6 +302,16 @@ window.onclick = function(event) {
       }
     }
   }
-}
+} gcse.onload = function() {
+        // Remove the hash fragment and .html extension from the URL
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl
+            .replace(/\.html(\?|#|$)/, '$1') // Remove .html
+            .replace(/#gsc\.tab=0$/, ''); // Remove #gsc.tab=0
+
+        if (newUrl !== currentUrl) {
+            history.replaceState(null, null, newUrl);
+        }
+    };
     </script>
       <script src="./searchsuggestion.js"></script> </body> </html>
