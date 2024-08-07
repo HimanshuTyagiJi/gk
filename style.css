@@ -757,7 +757,7 @@ hr{height: 5%;}
   .accordion .title-content {display: inline;text-align: center;align-items: center;}
   .accordion .icon {display: none;}
   .hide-brand {position: absolute;left: 50%;transform: translateX(-50%);top:-30%;}
-.menu-list,.menu {line-height: 250%;}
+.menu-list,.menu {line-height: 250%;margin-top:11%;}
  .menu-list {width:65%;margin:-10px;border:2px solid #ccc; padding: 25px;}
  .menu {overflow: auto;}
  #toggleButton {width: 25px;height: 25px;border-radius: 50%;background: var(--toggle-color);border: 2px solid var(--toggle-border-color);position: absolute;top: 1650%; /* Adjust as needed */right: 0%; /* Align to the right */transform: translateY(-50%); /* Center vertically */}
