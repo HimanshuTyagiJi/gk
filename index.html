@@ -274,17 +274,6 @@
  <script>
 
 
- (function() {
-    var cx = 'b0ecd4ea7b8d44888';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-
-   
-})();
 
 function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
@@ -302,7 +291,15 @@ window.onclick = function(event) {
       }
     }
   }
-} gcse.onload = function() {
+} (function() {
+    var cx = 'b0ecd4ea7b8d44888';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+ gcse.onload = function() {
         // Remove the hash fragment and .html extension from the URL
         var currentUrl = window.location.href;
         var newUrl = currentUrl
@@ -313,5 +310,8 @@ window.onclick = function(event) {
             history.replaceState(null, null, newUrl);
         }
     };
+   
+})();
+
     </script>
       <script src="./searchsuggestion.js"></script> </body> </html>
