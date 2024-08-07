@@ -750,7 +750,7 @@ hr{height: 5%;}
   .menu-list {top:10%;width:16.5%;display: block;overflow-y: auto;margin:-5px;}}
 
 @media only screen and (max-width: 900px) {body{font-size:15px;}
-  .header{padding:1px:height:50px;}
+  .header{padding:1px:height:55px;}
   .accordion-item .title-content {flex: 1;}
   .accordion-item img {width: 350px;height: 220px;}
   .title-content {display: inline;text-align: center;align-items: center;}
