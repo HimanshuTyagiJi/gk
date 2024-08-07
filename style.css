@@ -750,7 +750,7 @@ hr{height: 5%;}
   .menu-list {top:10%;width:16.5%;display: block;overflow-y: auto;margin:-5px;}}
 
 @media only screen and (max-width: 900px) {body{font-size:15px;}
-  .header{padding:1.5px}
+  .header{padding:2px}
   .accordion-item .title-content {flex: 1;}
   .accordion-item img {width: 350px;height: 220px;}
   .title-content {display: inline;text-align: center;align-items: center;}
@@ -758,7 +758,7 @@ hr{height: 5%;}
   .accordion .icon {display: none;}
   .hide-brand {position: absolute;left: 50%;transform: translateX(-50%);top:-30%;}
 .menu-list,.menu {line-height: 250%;}
- .menu-list {width:60%;margin:-10px;border:2px solid #ccc; padding: 25px;}
+ .menu-list {width:65%;margin:-10px;border:2px solid #ccc; padding: 25px;}
  .menu {overflow: auto;}
  #toggleButton {width: 25px;height: 25px;border-radius: 50%;background: var(--toggle-color);border: 2px solid var(--toggle-border-color);position: absolute;top: 1650%; /* Adjust as needed */right: 0%; /* Align to the right */transform: translateY(-50%); /* Center vertically */}
  .container {margin-top:14%;min-width: 100%;padding:8px;}
