@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="./index.css">
       <link rel="icon" type="png" href="GK-Learn-Study.png">
     <link rel="shortcut icon" href="GK-Learn-Study.png" type="x-icon">
+ <meta name="description" content="GKLearnStudy.in description">
+    <meta property="og:title" content="GKLearnStudy.in">
+    <meta property="og:description" content="GKLearnStudy.in description">
+    <meta property="og:image" content="https://gklearnstudy.in/GK-Learn-Study.png">
+    <meta property="og:url" content="https://gklearnstudy.in">
 
     
     
@@ -322,5 +327,41 @@ window.onclick = function(event) {
 });
 
 
+
+
+
+
+
+     /* Loading overlay and progress bar styles */
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading overlay and progress bar
+            const loadingOverlay = document.createElement('div');
+            loadingOverlay.className = 'loading-overlay';
+            const loadingBar = document.createElement('div');
+            loadingBar.className = 'loading-bar';
+            const progress = document.createElement('div');
+            progress.className = 'progress';
+            loadingBar.appendChild(progress);
+            loadingOverlay.appendChild(loadingBar);
+            document.body.appendChild(loadingOverlay);
+
+            // Function to update progress bar
+            function updateProgressBar(value) {
+                progress.style.width = value + '%';
+            }
+
+            // Simulate loading process
+            let progressValue = 0;
+            const loadingInterval = setInterval(() => {
+                progressValue += 10;
+                updateProgressBar(progressValue);
+                if (progressValue >= 100) {
+                    clearInterval(loadingInterval);
+                    document.body.removeChild(loadingOverlay);
+                }
+            }, 500);
+        });
+  
     </script>
       <script src="./searchsuggestion.js"></script> </body> </html>
