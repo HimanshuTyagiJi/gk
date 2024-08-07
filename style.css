@@ -740,7 +740,7 @@ iframe {width:95%;height:600px;margin:10px;
 hr{height: 5%;}
 @media only screen and (min-width: 900px) {
  
-  .menu{position:relative;top:0;left:0;width:auto;height:auto;margin-left:auto;box-shadow:none;}
+  .menu{position:relative;top:10;left:0;width:auto;height:auto;margin-left:auto;box-shadow:none;}
   .menu-inner{display:flex;flex-direction:row;}
   .menu-link{text-transform:capitalize;}
   .menu-block{margin-left:2rem;}
