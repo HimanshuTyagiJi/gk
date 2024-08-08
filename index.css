@@ -34,7 +34,7 @@
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  border-radius:25px;
+  border-radius:15px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -47,7 +47,7 @@
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd; border-radius:25px;}
+.dropdown a:hover {background-color: red; border-radius:25px;}
 
 .show {display: block;}
 
