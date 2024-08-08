@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Videos</title>
+    <style>
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px 4px 0 0;
+            background-color: #f1f1f1;
+            margin-right: 2px;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-bottom: none;
+        }
+        .tab-content {
+            display: none;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 0 4px 4px 4px;
+            background-color: #fff;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .video {
+            width: 320px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .video iframe {
+            width: 100%;
+            height: 180px;
+        }
+        .video-info {
+            padding: 10px;
+        }
+        .video-info h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+        #load-more {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #load-more:hover {
+            background-color: #155ab6;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        .search-bar button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-left: none;
+            background-color: #1a73e8;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        .search-bar button:hover {
+            background-color: #155ab6;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Channel Videos</h1>
+    <div class="search-bar">
+        <input type="text" id="search-query" placeholder="Search...">
+        <button onclick="searchVideos()">Search</button>
+    </div>
+    <div class="tabs">
+        <div class="tab active" data-tab="shorts">Shorts</div>
+        <div class="tab" data-tab="long">Long Videos</div>
+        <div class="tab" data-tab="playlists">Playlists</div>
+    </div>
+    <div id="shorts" class="tab-content active">
+        <div id="shorts-list" class="video-container"></div>
+        <button id="load-more-shorts" style="display: none;">Load More Shorts</button>
+    </div>
+    <div id="long" class="tab-content">
+        <div id="long-list" class="video-container"></div>
+        <button id="load-more-long" style="display: none;">Load More Long Videos</button>
+    </div>
+    <div id="playlists" class="tab-content">
+        <div id="playlists-list" class="video-container"></div>
+        <button id="load-more-playlists" style="display: none;">Load More Playlists</button>
+    </div>
+
+    <script>
+        const apiKey = 'AIzaSyA_w6nkwbzv1gVGd_FgcFD9IXTVGPaBZ9U';
+        const channelId = 'UCFo8q8WIrDifqtFHAvmr0NQ';
+
+        let shortsNextPageToken = '';
+        let longNextPageToken = '';
+        let playlistsNextPageToken = '';
+        let searchNextPageToken = '';
+
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab).classList.add('active');
+            });
+        });
+
+        function fetchVideos(category, pageToken = '') {
+            let url = '';
+            let containerId = '';
+            let loadMoreButtonId = '';
+            let nextPageTokenVar = '';
+
+            if (category === 'shorts') {
+                url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&type=video&videoDuration=short&maxResults=50&pageToken=${pageToken}`;
+                containerId = 'shorts-list';
+                loadMoreButtonId = 'load-more-shorts';
+                nextPageTokenVar = 'shortsNextPageToken';
+            } else if (category === 'long') {
+                url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&type=video&videoDuration=long&maxResults=50&pageToken=${pageToken}`;
+                containerId = 'long-list';
+                loadMoreButtonId = 'load-more-long';
+                nextPageTokenVar = 'longNextPageToken';
+            } else if (category === 'playlists') {
+                url = `https://www.googleapis.com/youtube/v3/playlists?key=${apiKey}&channelId=${channelId}&part=snippet&maxResults=50&pageToken=${pageToken}`;
+                containerId = 'playlists-list';
+                loadMoreButtonId = 'load-more-playlists';
+                nextPageTokenVar = 'playlistsNextPageToken';
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const videoList = document.getElementById(containerId);
+                    if (category === 'playlists') {
+                        data.items.forEach(playlist => {
+                            const playlistId = playlist.id;
+                            const title = playlist.snippet.title;
+                            const thumbnail = playlist.snippet.thumbnails.high.url;
+                            const videoElement = document.createElement('div');
+                            videoElement.classList.add('video');
+                            videoElement.innerHTML = `
+                                <a href="https://www.youtube.com/playlist?list=${playlistId}" target="_blank">
+                                    <img src="${thumbnail}" alt="${title}">
+                                </a>
+                                <div class="video-info">
+                                    <h3>${title}</h3>
+                                </div>
+                            `;
+                            videoList.appendChild(videoElement);
+                        });
+                    } else {
+                        data.items.forEach(video => {
+                            const videoId = video.id.videoId;
+                            const title = video.snippet.title;
+                            const thumbnail = video.snippet.thumbnails.high.url;
+                            const videoElement = document.createElement('div');
+                            videoElement.classList.add('video');
+                            videoElement.innerHTML = `
+                                <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="video-info">
+                                    <h3>${title}</h3>
+                                </div>
+                            `;
+                            videoList.appendChild(videoElement);
+                        });
+                    }
+
+                    window[nextPageTokenVar] = data.nextPageToken || '';
+                    const loadMoreButton = document.getElementById(loadMoreButtonId);
+                    if (window[nextPageTokenVar]) {
+                        loadMoreButton.style.display = 'block';
+                    } else {
+                        loadMoreButton.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error fetching videos:', error));
+        }
+
+        document.getElementById('load-more-shorts').addEventListener('click', () => {
+            fetchVideos('shorts', shortsNextPageToken);
+        });
+
+        document.getElementById('load-more-long').addEventListener('click', () => {
+            fetchVideos('long', longNextPageToken);
+        });
+
+        document.getElementById('load-more-playlists').addEventListener('click', () => {
+            fetchVideos('playlists', playlistsNextPageToken);
+        });
+
+        function searchVideos() {
+            const query = document.getElementById('search-query').value;
+            if (query) {
+                const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&type=video&maxResults=50&q=${query}&pageToken=${searchNextPageToken}`;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const videoList = document.getElementById('shorts-list');
+                        videoList.innerHTML = '';  // Clear previous search results
+                        data.items.forEach(video => {
+                            const videoId = video.id.videoId;
+                            const title = video.snippet.title;
+                            const thumbnail = video.snippet.thumbnails.high.url;
+                            const videoElement = document.createElement('div');
+                            videoElement.classList.add('video');
+                            videoElement.innerHTML = `
+                                <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <div class="video-info">
+                                    <h3>${title}</h3>
+                                </div>
+                            `;
+                            videoList.appendChild(videoElement);
+                        });
+
+                        searchNextPageToken = data.nextPageToken || '';
+                        const loadMoreButton = document.getElementById('load-more-shorts');
+                        if (searchNextPageToken) {
+                            loadMoreButton.style.display = 'block';
+                        } else {
+                            loadMoreButton.style.display = 'none';
+                        }
+                    })
+                    .catch(error => console.error('Error searching videos:', error));
+            }
+        }
+
+        // Initial fetch for each category
+        fetchVideos('shorts');
+        fetchVideos('long');
+        fetchVideos('playlists');
+    </script>
+</body>
+</html>
