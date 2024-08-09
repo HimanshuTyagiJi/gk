@@ -645,6 +645,32 @@ if (textSpan) {
 
       
     </script>
+        <script>
+    window.onload = function() {
+        // Ensure that your elements have loaded
+        setTimeout(function() {
+            // Update the image source with your logo URL
+            var logoElement = document.querySelector('img.rms_img');
+            if (logoElement) {
+                logoElement.src = 'https://gklearnstudy.in/GK-Learn-Study.png';
+                logoElement.alt = 'GK Learn Study';
+            }
+
+            // Update the title text
+            var titleElement = document.querySelector('div.tptt');
+            if (titleElement) {
+                titleElement.textContent = 'GK Learn Study';
+            }
+
+            // Update the aria-label attribute for the link
+            var linkElement = document.querySelector('a.tilk');
+            if (linkElement) {
+                linkElement.setAttribute('aria-label', 'GK Learn Study');
+            }
+        }, 1000); // Delay to ensure elements are loaded
+    };
+</script>
+
     <script src="./searchsuggestion.js"></script>
 </body>
 </html>
