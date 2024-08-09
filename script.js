@@ -148,25 +148,34 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
 
-//showMoreBtn.addEventListener('click', showQuestions);
+document.addEventListener('DOMContentLoaded', (event) => {
     const showMoreBtn = document.getElementById('showMoreBtn');
+    const filterInput = document.getElementById('filterInput');
+    const questionsContainer = document.getElementById('questionsContainer');
 
- filterInput.addEventListener('input', function () {
-      const filterValue = filterInput.value.toLowerCase();
-      const allQuestions = questionsContainer.querySelectorAll('.accordion');
+    function showQuestions() {
+        console.log('Showing more questions...');
+        // यहां आपके सवालों को दिखाने का कोड होगा
+    }
 
-      allQuestions.forEach(question => {
-          const title = question.querySelector('.heading-box h4').textContent.toLowerCase();
-          if (title.includes(filterValue)) {
-              question.style.display = 'block';
-          } else {
-              question.style.display = 'none';
-          }
-      });
-  });
+    showMoreBtn.addEventListener('click', showQuestions);
 
-  // Initial call to show the first batch of questions
-  showQuestions();
+    filterInput.addEventListener('input', function () {
+        const filterValue = filterInput.value.toLowerCase();
+        const allQuestions = questionsContainer.querySelectorAll('.accordion');
+
+        allQuestions.forEach(question => {
+            const title = question.querySelector('.heading-box h4').textContent.toLowerCase();
+            if (title.includes(filterValue)) {
+                question.style.display = 'block';
+            } else {
+                question.style.display = 'none';
+            }
+        });
+    });
+
+    // Initial call to show the first batch of questions
+    showQuestions();
 });
 
 
