@@ -10,30 +10,22 @@
 
 
 
-
+document.addEventListener('DOMContentLoaded', (event) => {
     // Existing code to add favicon, manifest, and metadata
     const head = document.querySelector('head');
 
     // Favicon
     const faviconLink = document.createElement('link');
     faviconLink.rel = 'icon';
-    faviconLink.type = 'image/GK-Learn-Study.png';
+    faviconLink.type = 'image/png'; // Correct MIME type for PNG image
     faviconLink.href = 'GK-Learn-Study.png';
     head.appendChild(faviconLink);
 
-   
-
-
-
     // Metadata
-    
-
     const metaOgTitle = document.createElement('meta');
     metaOgTitle.setAttribute('property', 'og:title');
     metaOgTitle.content = 'GK Learn Study';
     head.appendChild(metaOgTitle);
-
-   
 
     const metaOgImage = document.createElement('meta');
     metaOgImage.setAttribute('property', 'og:image');
@@ -42,7 +34,7 @@
 
     const metaOgUrl = document.createElement('meta');
     metaOgUrl.setAttribute('property', 'og:url');
-    metaOgUrl.content = 'https://gklearnstudy.in.com';
+    metaOgUrl.content = 'https://gklearnstudy.in'; // Corrected URL
     head.appendChild(metaOgUrl);
 });
 
