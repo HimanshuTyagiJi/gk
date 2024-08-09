@@ -148,7 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
 
-showMoreBtn.addEventListener('click', showQuestions);
+//showMoreBtn.addEventListener('click', showQuestions);
+    const showMoreBtn = document.getElementById('showMoreBtn');
+
  filterInput.addEventListener('input', function () {
       const filterValue = filterInput.value.toLowerCase();
       const allQuestions = questionsContainer.querySelectorAll('.accordion');
