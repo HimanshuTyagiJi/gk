@@ -2747,7 +2747,7 @@ for (let i = 0; i < linkData.length; i++) {
           href: 'https://www.example.com/'
         },
         {
-          src: 'image/youtube.png',
+          src: 'image/Youtube.png',
           alt: 'Youtube',
           href: 'https://www.example.com/'
         },
