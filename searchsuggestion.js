@@ -1,19 +1,4 @@
 
-var watermark = document.createElement('div');
-watermark.classList.add('watermark');
-watermark.textContent = 'EduTech MasterMind'; // Replace with your desired watermark text
-
-// Create an image element
-var image = document.createElement('img');
-image.src = './image'; // Replace 'path_to_your_image.jpg' with the actual path to your image
-image.classList.add('watermark-image'); // Add the 'watermark-image' class to the image
-
-// Append the watermark and image to the document body
-document.body.appendChild(watermark);
-document.body.appendChild(image);
-
-
-
 // Function to add 'active' class to clicked link and remove from others
 function activateLink(link) {
   var links = document.querySelectorAll('a');
