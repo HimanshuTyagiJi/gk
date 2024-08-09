@@ -2609,11 +2609,11 @@ function getSynonyms() {
 
 
 const linkData = [
-  {name: "Link1 h jhbkh khhv gyfy gguh hghgu ", url: "https://www.example.com/link1", color: "red"},
-  {name: "Link 2", url: "https://www.example.com/link2", color: "#03736f"},
-  {name: "Link 3", url: "https://www.example.com/link3", color: "#11f705"},
-  {name: "Link 4", url: "https://www.example.com/link4", color: "orange"},
-  {name: "Link 5", url: "https://www.example.com/link5", color: "purple"},
+  {name: "Mathematics All formulas ormulas  ", url: "https://www.example.com/link1", color: "red"},
+  {name: "Physics formulas", url: "https://www.example.com/link2", color: "#03736f"},
+  {name: "Chemical formulas", url: "https://www.example.com/link3", color: "#11f705"},
+  {name: "Periodic table", url: "https://www.example.com/link4", color: "orange"},
+  {name: "Conversion", url: "https://www.example.com/link5", color: "purple"},
   {name: "Link 6", url: "https://www.example.com/link1", color: "red"},
   {name: "Link 7", url: "https://www.example.com/link2", color: "blue"},
   {name: "Link 8", url: "https://www.example.com/link3", color: "green"},
