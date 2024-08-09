@@ -48,27 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     faviconLink.href = 'GK-Learn-Study.png';
     head.appendChild(faviconLink);
 
-    // Manifest JSON content
-    const manifestContent = {
-        "name": "GK Learn Study",
-        "short_name": "GK Learn Study",
-        "start_url": "/",
-        "display": "standalone",
-        "background_color": "#ffffff",
-        "theme_color": "#ffffff",
-        "icons": [
-            {
-                "src": "GK-Learn-Study.png",
-                "sizes": "192x192",
-                "type": "image/png"
-            },
-            {
-                "src": "GK-Learn-Study.png",
-                "sizes": "512x512",
-                "type": "image/png"
-            }
-        ]
-    };
+   
 
     // Create Blob from JSON content
     const blob = new Blob([JSON.stringify(manifestContent)], { type: 'application/json' });
@@ -2740,12 +2720,12 @@ for (let i = 0; i < linkData.length; i++) {
           href: 'https://www.example.com/'
         },
         {
-          src: 'image/Youtube.png',
+          src: 'image/youtube.png',
           alt: 'Youtube',
           href: 'https://www.example.com/'
         },
         {
-          src: 'image/Youtube.png',
+          src: 'image/youtube.png',
           alt: 'Youtube',
           href: 'https://www.example.com/'
         },
