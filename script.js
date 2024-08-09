@@ -10,33 +10,6 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Add loading overlay and progress bar
-    const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'loading-overlay';
-    const loadingBar = document.createElement('div');
-    loadingBar.className = 'loading-bar';
-    const progress = document.createElement('div');
-    progress.className = 'progress';
-    loadingBar.appendChild(progress);
-    loadingOverlay.appendChild(loadingBar);
-    document.body.appendChild(loadingOverlay);
-
-    // Function to update progress bar
-    function updateProgressBar(value) {
-        progress.style.width = value + '%';
-    }
-
-    // Simulate loading process
-    let progressValue = 0;
-    const loadingInterval = setInterval(() => {
-        progressValue += 10;
-        updateProgressBar(progressValue);
-        if (progressValue >= 100) {
-            clearInterval(loadingInterval);
-            document.body.removeChild(loadingOverlay);
-        }
-    }, 500);
 
     // Existing code to add favicon, manifest, and metadata
     const head = document.querySelector('head');
@@ -44,46 +17,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Favicon
     const faviconLink = document.createElement('link');
     faviconLink.rel = 'icon';
-    faviconLink.type = 'image/png';
+    faviconLink.type = 'image/GK-Learn-Study.png';
     faviconLink.href = 'GK-Learn-Study.png';
     head.appendChild(faviconLink);
 
    
 
-    // Create Blob from JSON content
-    const blob = new Blob([JSON.stringify(manifestContent)], { type: 'application/json' });
-    const manifestURL = URL.createObjectURL(blob);
 
-    // Manifest link element
-    const manifestLink = document.createElement('link');
-    manifestLink.rel = 'manifest';
-    manifestLink.href = manifestURL;
-    head.appendChild(manifestLink);
 
     // Metadata
-    const metaDescription = document.createElement('meta');
-    metaDescription.name = 'description';
-    metaDescription.content = 'GKLearnStudy.in description';
-    head.appendChild(metaDescription);
+    
 
     const metaOgTitle = document.createElement('meta');
     metaOgTitle.setAttribute('property', 'og:title');
-    metaOgTitle.content = 'GKLearnStudy.in';
+    metaOgTitle.content = 'GK Learn Study';
     head.appendChild(metaOgTitle);
 
-    const metaOgDescription = document.createElement('meta');
-    metaOgDescription.setAttribute('property', 'og:description');
-    metaOgDescription.content = 'GKLearnStudy.in description';
-    head.appendChild(metaOgDescription);
+   
 
     const metaOgImage = document.createElement('meta');
     metaOgImage.setAttribute('property', 'og:image');
-    metaOgImage.content = 'https://yourwebsite.com/path/to/GK-Learn-Study.png';
+    metaOgImage.content = 'https://gklearnstudy.in/GK-Learn-Study.png';
     head.appendChild(metaOgImage);
 
     const metaOgUrl = document.createElement('meta');
     metaOgUrl.setAttribute('property', 'og:url');
-    metaOgUrl.content = 'https://yourwebsite.com';
+    metaOgUrl.content = 'https://gklearnstudy.in.com';
     head.appendChild(metaOgUrl);
 });
 
