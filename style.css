@@ -765,7 +765,7 @@ hr{height: 5%;}
  input[type=text]:focus {width: 143%;}
  #suggestion-list {left:-49%; width:149%;height:780%;}
  input[type=text] {background-size: 20px;float:right;width: 10%;right:0%;box-sizing: border-box;border: 0px solid #ccc;border-radius: 12px;background-color: white;background-position: 10px 10px; background-repeat: no-repeat;padding: 10px 20px 11px 30px;-webkit-transition: width 0.4s ease-in-out;transition: width 0.4s ease-in-out;}
-.important_link {top:0%;margin: 0 auto;padding: 1em;margin-bottom: 20px;}
+.important_link {top:0%;margin-left: 0 auto;padding: 0;margin-bottom: 5px;}
  .container {margin-top:14%;max-width: 60%;}
 .custom-row {flex-direction: column;}
  .custom-column {flex: none; width: 100%; margin-right: 0; margin-bottom: 20px;}
